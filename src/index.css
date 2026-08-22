@@ -45,6 +45,11 @@ h1 {
   box-shadow: 0 28px 52px -24px var(--card-shadow);
 }
 
+.card-scene.show-on-hover:hover .card {
+  transform: rotateX(0deg) rotateY(180deg) translateY(6px);
+  box-shadow: 0 28px 52px -24px var(--card-shadow);
+}
+
 .select {
   box-shadow: 0 0 6px 0 #00000011 inset, 0 0 10px 0 #0000000c;
 }
@@ -73,22 +78,6 @@ h1 {
   user-select: none;
 }
 
-.card-front::before,
-.card-back::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.9) 35%, transparent 70%);
-  transform: translateX(-120%);
-  transition: transform 0.9s .1s ease;
-}
-
-.card-scene.show .card-front::before,
-.card-scene.show .card-back::before {
-  transform: translateX(120%);
-}
-
 .card-back {
   transform: rotateY(180deg);
   background: linear-gradient(135deg, rgba(244,244,245,0.98), rgba(224,231,255,0.85));
@@ -99,7 +88,7 @@ h1 {
   transition: translate .3s, box-shadow .3s;
   will-change: box-shadow;
 
-  &:hover {
+  &:is(:hover , :focus-visible) {
     translate: 4px -6px 0px;
     box-shadow: -4px 4px 0 3px #18181b;
   }
@@ -108,4 +97,35 @@ h1 {
     translate: 2px -4px 0px;
     box-shadow: -2px 2px 0 3px #18181b;
   }
+}
+
+aside {
+  box-shadow: -5px 0 15px 0 #00000025;
+}
+
+.animate-op {
+  animation: op .3s ease-in-out;
+}
+
+@keyframes op {
+  from {
+    opacity: 0;
+    scale: 0.5;
+  } to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.edit-menu {
+  min-width: max-content;
+  position-area: right;
+  translate: 103% 58%;
+  position-try-fallbacks:
+  --bottom;
+}
+
+@position-try --bottom {
+  position-area: bottom;
+  translate: 58% 103%;
 }

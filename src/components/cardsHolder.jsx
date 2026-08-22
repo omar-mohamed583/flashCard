@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import Card from "./card";
-import { ShowAnswerContext } from "../context/contextProvider";
+import { DataContext } from "../context/contextProvider";
 
 export default function CardHolder() {
-  const { cardContent, currentProgress, showAnswer } = useContext(ShowAnswerContext);
+  const { cardsCollection, activeCardDeskId, currentProgress, showAnswer, showOnHover } =
+    useContext(DataContext);
 
-  const currentCard = cardContent[currentProgress - 1];
+  const currentCard = cardsCollection.find((co) => co.id === activeCardDeskId).cardContent[currentProgress - 1];
 
   return (
     <div className="w-[50vw] h-[60vh] min-w-78.75 mx-auto flex bg-zinc-300 flex-wrap content-center justify-center">
@@ -14,6 +15,7 @@ export default function CardHolder() {
           question={currentCard.question}
           answer={currentCard.answer}
           showAnswer={showAnswer}
+          showOnHover={showOnHover}
         />
     </div>
   );
