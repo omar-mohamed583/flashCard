@@ -28,7 +28,7 @@ export default function CollectionList({ show, setShowMenu, menuRef }) {
 
   return (
     <ul
-      className={`menu absolute top-[110%] left-0 w-full bg-[#fafafa] rounded-lg grid border border-zinc-600/50 right-0 opacity-0 scale-80 transition-[opacity,scale] pointer-events-none scale-x-75 [&.active]:scale-y-100 [&.active]:scale-x-100 [&.active]:opacity-100 [&.active]:pointer-events-auto overflow-hidden ${show ? "active" : ""}`}
+      className={`menu absolute top-[110%] left-0 w-full bg-[#fafafa] rounded-lg grid border border-zinc-600/50 right-0 opacity-0 scale-90 origin-top-right transition-[opacity,scale] pointer-events-none [&.active]:scale-100 [&.active]:opacity-100 [&.active]:pointer-events-auto overflow-hidden ${show ? "active" : ""}`}
     >
       {cardsCollection.map((co) => (
         <CardCollectionItem
@@ -74,7 +74,6 @@ function CardCollectionItem({ dataId, children, menuRef }) {
       setEditObjMenu((curr) => ({ ...curr, opened: !curr.opened }));
 
     else {
-      console.log(editMenuObj.id, dataId);
       const clickedLiRect = e.target.closest(".li")?.getBoundingClientRect();
       const prevLiRect = document
         .querySelector(`.li[data-id='${editMenuObj.id}']`)
@@ -90,6 +89,7 @@ function CardCollectionItem({ dataId, children, menuRef }) {
             menuRef.current.style.transition = 'none';
             menuRef.current.style.translate = "103% 58%";
             setEditObjMenu(() => ({ id: dataId, opened: true }));
+
             requestAnimationFrame(() => {
               requestAnimationFrame(() => {
                 requestAnimationFrame(() => {

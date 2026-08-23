@@ -129,3 +129,13 @@ aside {
   position-area: bottom;
   translate: 58% 103%;
 }
+
+dialog[open] {
+  @starting-style {
+    opacity: 0;
+    scale: 0.5;
+  }
+
+  opacity: 1;
+  scale: 1;
+}

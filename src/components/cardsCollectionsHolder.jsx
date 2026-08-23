@@ -53,7 +53,7 @@ export default function CardsCollectionHolder() {
         <span className="absolute -top-2.5 bg-white rounded-full text-xs px-1 left-2 max-w-25 truncate">
           {activeDeckName}
         </span>
-        <span className="font-medium">Select cards deck</span>
+        <span>Select cards deck</span>
         <span>
           <svg
             className={`${showMenu ? "rotate-180 translate-y-0.5 translate-x-0.5" : "rotate-0"} transition-[rotate,translate] duration-200`}

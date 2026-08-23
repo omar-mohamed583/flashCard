@@ -74,7 +74,7 @@ export default function DataContextProvider({ children }) {
     1,
   );
 
-  const [editMenuObj, setEditObjMenu] = useState({id: '', opened: false});
+  const [editMenuObj, setEditObjMenu] = useLocalStorage('saved-menu-obj', {id: '', opened: false});
 
   const [showOnHover, setShowOnHover] = useLocalStorage('show-on-hover', false);
 
@@ -91,6 +91,8 @@ export default function DataContextProvider({ children }) {
   );
 
   const [showSideBar, setShowSideBar] = useState(false);
+
+  const [showDialog, setShowDialog] = useState(false);
 
   return (
     <DataContext
@@ -110,6 +112,8 @@ export default function DataContextProvider({ children }) {
         showSideBar,
         editMenuObj,
         setEditObjMenu,
+        setShowDialog,
+        showDialog,
       }}
     >
       {children}

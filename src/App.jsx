@@ -1,5 +1,6 @@
 import CardsCollectionHolder from "./components/cardsCollectionsHolder";
 import CardHolder from "./components/cardsHolder";
+import Dialog from "./components/editCollectionDialog";
 import LayoutHolder from "./components/layoutHolder";
 import NavigationBar from "./components/navigationBar";
 import ProgressBar from "./components/progressbar";
@@ -23,6 +24,8 @@ export default function App() {
 
           <NavigationBar />
         </LayoutHolder>
+
+        <Dialog />
       </main>
       <SideBar />
     </DataContextProvider>
