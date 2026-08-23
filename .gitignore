@@ -25,7 +25,4 @@ dist-ssr
 
 eslint.config.js
 
-package.json
-package-lock.json
-
 Lib/
