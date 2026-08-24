@@ -121,6 +121,7 @@ aside {
   min-width: max-content;
   position-area: right;
   translate: 26% 99%;
+  z-index: 1000;
 }
 
 
