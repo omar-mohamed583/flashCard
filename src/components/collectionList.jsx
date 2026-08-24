@@ -80,11 +80,11 @@ function CardCollectionItem({ dataId, children, menuRef }) {
         .querySelector(`.li[data-id='${editMenuObj.id}']`)
         ?.getBoundingClientRect();
 
-      if (editMenuObj.id) {
+      if (editMenuObj.id && menuRef?.current) {
         requestAnimationFrame(() => {
           menuRef.current.style.translate = `103% calc(58% + ${clickedLiRect?.top - prevLiRect?.top}px)`;
 
-          if (timeout.current) clearTimeout(timeout.current);
+          if (timeout?.current) clearTimeout(timeout.current);
 
           timeout.current = setTimeout(() => {
             menuRef.current.style.transition = "none";
