@@ -8,7 +8,8 @@ export default function SideBar() {
     setShowAnswer,
     setCardsCollection,
     setCurrentProgress,
-    activeCardDeckId,
+    setActiveCardDeckId,
+    setNotification,
   } = useContext(DataContext);
   const [count, setCount] = useState([crypto.randomUUID()]);
 
@@ -18,14 +19,36 @@ export default function SideBar() {
   );
 
   function handleAddCardCollection(prevData, formData) {
-    if (!formData) return;
+    if (!formData) throw new Error("No Form Data");
 
-    if (!formData.get("deck-name").trim()) throw new Error("no Deck Name");
-    else if (
+    if (!formData.get("deck-name").trim()) {
+      setNotification({ message: "No Deck Name", show: true, type: "error" });
+
+      return setTimeout(() => {
+        setNotification({
+          message: "",
+          show: false,
+          type: "error",
+        });
+      }, 2500);
+    } else if (
       !formData.get("card-0-face")?.trim() ||
       !formData.get("card-0-back")?.trim()
-    )
-      throw new Error("no Card Face/Back");
+    ) {
+      setNotification({
+        message: "Please fill all cards Info",
+        show: true,
+        type: "error",
+      });
+
+      return setTimeout(() => {
+        setNotification({
+          message: "",
+          show: false,
+          type: "error",
+        });
+      }, 2500);
+    }
 
     const newCollectionId = crypto.randomUUID();
 
@@ -40,15 +63,26 @@ export default function SideBar() {
     };
 
     setShowAnswer(false);
-    activeCardDeckId(newCollectionId);
+    setActiveCardDeckId(newCollectionId);
     setCardsCollection((curr) => [...curr, newCollection]);
     setCurrentProgress(1);
     setCount((curr) => [curr[0]]);
+    setNotification({
+      message: `Deck ${formData?.get("deck-name")} added`,
+      show: true,
+      type: "success",
+    });
+
+    setTimeout(() => {
+      setNotification({
+        message: "",
+        show: false,
+        type: 'success',
+      });
+    }, 2500);
 
     return { newCollection, formData };
   }
-
-  console.log(state);
 
   useEffect(() => {
     function handleClick(e) {
@@ -66,12 +100,11 @@ export default function SideBar() {
 
   return (
     <aside
-      className={`aside fixed right-0 top-0 bottom-0 z-30 p-5 py-7 content-start bg-[#fafafa] min-w-77.5 w-[32vw] transition-[translate] duration-200 ease-in-out ${showSideBar ? "translate-x-0" : "translate-x-[105%]"}`}
+      className={`aside fixed right-0 top-0 bottom-0 z-30 p-5 py-7 content-start bg-[#fafafa] w-[max(34dvw,310px)] transition-[translate] duration-200 ease-in-out ${showSideBar ? "translate-x-0" : "translate-x-[105%]"}`}
     >
       <form
         action={dispatchAction}
         className="flex flex-col gap-8 h-full"
-        method="post"
       >
         <header className="flex justify-between items-center flex-wrap content-center">
           <button

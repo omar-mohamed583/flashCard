@@ -26,3 +26,5 @@ dist-ssr
 eslint.config.js
 
 Lib/
+
+tailwind.config.js

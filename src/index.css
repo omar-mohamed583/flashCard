@@ -120,22 +120,20 @@ aside {
 .edit-menu {
   min-width: max-content;
   position-area: right;
-  translate: 103% 58%;
-  position-try-fallbacks:
-  --bottom;
+  translate: 26% 99%;
 }
 
-@position-try --bottom {
-  position-area: bottom;
-  translate: 58% 103%;
-}
 
 dialog[open] {
-  @starting-style {
-    opacity: 0;
-    scale: 0.5;
-  }
-
   opacity: 1;
   scale: 1;
+}
+
+.notification {
+  translate: -105% 0;
+  transition: translate 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.showNotification {
+  translate: 0 0;
 }

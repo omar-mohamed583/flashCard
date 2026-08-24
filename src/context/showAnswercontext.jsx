@@ -74,20 +74,23 @@ export default function DataContextProvider({ children }) {
     1,
   );
 
-  const [editMenuObj, setEditObjMenu] = useLocalStorage('saved-menu-obj', {id: '', opened: false});
+  const [editMenuObj, setEditObjMenu] = useState({id: '', opened: false});
 
   const [showOnHover, setShowOnHover] = useLocalStorage('show-on-hover', false);
 
-  const [activeCardDeskId, setActiveCardDeckId] = useLocalStorage(
+  const [activeCardDeckId, setActiveCardDeckId] = useLocalStorage(
     "activeDeckId",
-    cardsCollection[0].id,
+    cardsCollection[0]?.id,
   );
+
+  const [notification, setNotification] = useState({message: '', show: false, type: 'info'});
+
 
   const activeDeckLength = useMemo(
     () =>
-      cardsCollection.find((co) => co.id === activeCardDeskId).cardContent
+      cardsCollection.find((co) => co?.id === activeCardDeckId)?.cardContent
         .length,
-    [cardsCollection, activeCardDeskId],
+    [cardsCollection, activeCardDeckId],
   );
 
   const [showSideBar, setShowSideBar] = useState(false);
@@ -103,7 +106,7 @@ export default function DataContextProvider({ children }) {
         setCurrentProgress,
         cardsCollection,
         setCardsCollection,
-        activeCardDeskId,
+        activeCardDeckId,
         setActiveCardDeckId,
         activeDeckLength,
         showOnHover,
@@ -114,6 +117,8 @@ export default function DataContextProvider({ children }) {
         setEditObjMenu,
         setShowDialog,
         showDialog,
+        notification,
+        setNotification,
       }}
     >
       {children}
