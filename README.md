@@ -119,17 +119,6 @@ Works on all modern browsers that support:
 - CSS Grid and Flexbox
 - CSS Transforms and Animations
 
-## Future Enhancements 🎯
-
-Potential features to add:
-- Local storage persistence
-- Import/export decks
-- Spaced repetition algorithm
-- Statistics and performance tracking
-- Dark mode theme
-- Keyboard shortcuts
-- Audio support for flashcards
-
 ## License 📄
 
 This project is open source and available under the MIT License.
